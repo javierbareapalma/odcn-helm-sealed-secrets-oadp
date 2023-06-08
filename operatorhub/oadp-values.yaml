@@ -1,0 +1,12 @@
+namespace: openshift-adp
+createNamesapce: true
+operators:
+  - name: redhat-oadp-operator
+    subscription:
+      channel: stable-1.1
+      approval: Automatic
+      operatorName: redhat-oadp-operator
+      sourceName: redhat-operators
+      sourceNamespace: openshift-marketplace
+    operatorgroup:
+      create: true

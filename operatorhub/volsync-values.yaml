@@ -1,0 +1,12 @@
+namespace: openshift-operators
+createNamespace: false
+operators:
+  - name: volsync-product
+    subscription:
+      channel: stable
+      approval: Automatic
+      operatorName: volsync-product
+      sourceName: redhat-operators
+      sourceNamespace: openshift-marketplace
+    operatorgroup:
+      create: false

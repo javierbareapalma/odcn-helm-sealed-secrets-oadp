@@ -1,0 +1,13 @@
+{{- if .Values.createNamespace }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Values.namespace | quote }}
+  {{- if hasPrefix "openshift" .Values.namespace }}
+  labels:
+    openshift.io/cluster-monitoring: "true"
+  {{- end }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+{{- end }}
