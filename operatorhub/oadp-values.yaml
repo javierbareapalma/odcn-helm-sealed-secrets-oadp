@@ -1,5 +1,5 @@
 namespace: openshift-adp
-createNamesapce: true
+createNamespace: true
 operators:
   - name: redhat-oadp-operator
     subscription:
