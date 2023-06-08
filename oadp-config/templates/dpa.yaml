@@ -1,0 +1,35 @@
+apiVersion: oadp.openshift.io/v1alpha1
+kind: DataProtectionApplication
+metadata:
+  name: dpa
+  namespace: openshift-adp
+spec:
+  features:
+    dataMover:
+      credentialName: dm-restic-secret
+      enable: true
+  backupLocations:
+    - velero:
+        config:
+          profile: default
+          region: eu-west-2
+          s3ForcePathStyle: "true"
+          s3Url: "http://s3.openshift-storage.svc/"
+        credential:
+          key: cloud
+          name: cloud-credentials
+        default: true
+        objectStorage:
+          bucket: 'test-bucket1-d7ffc94b-bba0-4980-b390-057ddd3f92b9'
+          prefix: velero
+        provider: aws
+  configuration:
+    restic:
+      enable: false
+    velero:
+      defaultPlugins:
+        - openshift
+        - aws
+        - csi
+      featureFlags:
+        - EnableCSI
