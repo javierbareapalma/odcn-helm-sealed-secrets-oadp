@@ -1,0 +1,37 @@
+
+# xxx
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: patch-volumesnapshotclasses
+  namespace: openshift-adp
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: patch-volumesnapshotclasses
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+rules:
+- apiGroups: ["snapshot.storage.k8s.io"] # core API group
+  resources: ["volumesnapshotclasses"]
+  verbs: ["get","patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: patch-volumesnapshotclasses
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+subjects:
+  - kind: ServiceAccount
+    name: patch-volumesnapshotclasses
+    namespace: openshift-adp
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: patch-volumesnapshotclasses
+ 

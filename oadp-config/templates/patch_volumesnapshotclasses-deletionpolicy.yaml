@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: patching-volumesnapshotclasses-deletionpolicy
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+    compare-options: IgnoreExtraneous
+spec:
+  template:
+    spec:
+      containers:
+      - name: patching-volumesnapshotclasses-deletionpolicy
+        command:
+            - /bin/bash
+            - -c
+            - |
+              echo "Patching volumesnapshotclasses deletion Policy"
+              oc patch volumesnapshotclass ocs-storagecluster-rbdplugin-snapclass --type=merge -p '{"deletionPolicy": "Retain"}'
+              if [ $? = 0 ]
+              then
+                  echo "volumesnapshotclass ocs-storagecluster-rbdplugin-snapclass deletionPolicy = Retain applied ok"
+              else
+                  echo "Failed to change volumesnapshotclass ocs-storagecluster-rbdplugin-snapclass deletionPolicy"
+              fi
+              oc patch volumesnapshotclass ocs-storagecluster-cephfsplugin-snapclass --type=merge -p '{"deletionPolicy": "Retain"}'
+              if [ $? = 0 ]
+              then
+                  echo "echo "volumesnapshotclass ocs-storagecluster-cephfslugin-snapclass deletionPolicy = Retain applied ok"
+              else
+                  echo "Failed to change volumesnapshotclass ocs-storagecluster-cephfsplugin-snapclass deletionPolicy"
+              fi
+              image: registry.redhat.io/openshift4/ose-cli:v4.11
+      serviceAccount: patch-volumesnapshotclasses
+      serviceAccountName: patch-volumesnapshotclasses
+      restartPolicy: Never

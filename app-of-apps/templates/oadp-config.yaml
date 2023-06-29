@@ -15,6 +15,6 @@ spec:
   source:
     path: oadp-config
     repoURL: https://github.com/javierbareapalma/odcn-helm-sealed-secrets-oadp.git
-    targetRevision: HEAD
+    targetRevision: rh-jbareapa
   syncPolicy:
     automated: {}
