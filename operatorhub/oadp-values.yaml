@@ -3,7 +3,7 @@ createNamespace: true
 operators:
   - name: redhat-oadp-operator
     subscription:
-      channel: stable-1.1
+      channel: stable-1.2
       approval: Automatic
       operatorName: redhat-oadp-operator
       sourceName: redhat-operators

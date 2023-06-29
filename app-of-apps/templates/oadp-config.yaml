@@ -14,7 +14,7 @@ spec:
   project: default
   source:
     path: oadp-config
-    repoURL: https://github.com/marpears/helm-sealed-secrets-oadp.git
+    repoURL: https://github.com/javierbareapalma/odcn-helm-sealed-secrets-oadp.git
     targetRevision: HEAD
   syncPolicy:
     automated: {}
