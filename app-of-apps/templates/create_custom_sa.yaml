@@ -35,7 +35,6 @@ roleRef:
   kind: ClusterRole
   name: patch-volumesnapshotclasses
 
-
 # 2xxx
 ---
 apiVersion: v1
