@@ -1,7 +1,7 @@
 apiVersion: objectbucket.io/v1alpha1
 kind: ObjectBucketClaim
 metadata:
-  name: odcnoord-rgw-oadp-s3-bucket
+  name: oadp-rgw-s3-bucket
   namespace: openshift-adp
   annotations:
     argocd.argoproj.io/sync-wave: "2"
