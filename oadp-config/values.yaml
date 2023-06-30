@@ -1,0 +1,10 @@
+##
+# OADP Chart Values File.
+##
+#
+
+oadp:
+# bucket name
+  bucketname: odcnoord-rgw-oadp-s3-bucket
+# StorageClass of bucket
+  scbucket: ocs-storagecluster-ceph-rgw
