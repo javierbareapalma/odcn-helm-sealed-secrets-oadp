@@ -1,0 +1,11 @@
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: oadp-s3-bucket
+  namespace: openshift-adp
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  bucketName: {{ .Values.oadp.bucketname | default "oadp-s3-bucket" }}
+  storageClassName: {{ .Values.oadp.scbucket | default "openshift-storage.noobaa.io" }}
