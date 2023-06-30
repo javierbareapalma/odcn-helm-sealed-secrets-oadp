@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: labeling-volumesnapshotclasses
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    compare-options: IgnoreExtraneous
+spec:
+  template:
+    spec:
+      containers:
+      - name: labeling-volumesnapshotclasses
+        command:
+            - /bin/bash
+            - -c
+            - |
+              echo "Labeling volumesnapshotclasses in order to use the CSIsnapshot feature with Velero"
+              oc label VolumeSnapshotClass ocs-storagecluster-rbdplugin-snapclass velero.io/csi-volumesnapshot-class=true
+              if [ $? = 0 ]
+              then
+                  echo "labeling volumesnapshotclass.snapshot.storage.k8s.io/ocs-storagecluster-rbdplugin-snapclass applied ok"
+              else
+                  echo "Failed to label VolumeSnapshotClass  ocs-storagecluster-rbdplugin-snapclass"
+              fi
+              oc label VolumeSnapshotClass ocs-storagecluster-cephfsplugin-snapclass velero.io/csi-volumesnapshot-class=true
+              if [ $? = 0 ]
+              then
+                  echo "labeling volumesnapshotclass.snapshot.storage.k8s.io/ocs-storagecluster-cephfsplugin-snapclass applied ok"
+              else
+                  echo "Failed to VolumeSnapshotClass  ocs-storagecluster-cephfsplugin-snapclass"
+              fi
+              image: registry.redhat.io/openshift4/ose-cli:v4.11
+      serviceAccount: label-volumesnapshotclasses
+      serviceAccountName: label-volumesnapshotclasses
+      restartPolicy: Never

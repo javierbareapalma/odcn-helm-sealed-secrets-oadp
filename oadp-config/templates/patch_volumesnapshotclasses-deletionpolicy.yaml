@@ -3,7 +3,7 @@ kind: Job
 metadata:
   name: patching-volumesnapshotclasses-deletionpolicy
   annotations:
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: "3"
     compare-options: IgnoreExtraneous
 spec:
   template:
@@ -25,7 +25,7 @@ spec:
               oc patch volumesnapshotclass ocs-storagecluster-cephfsplugin-snapclass --type=merge -p '{"deletionPolicy": "Retain"}'
               if [ $? = 0 ]
               then
-                  echo "echo "volumesnapshotclass ocs-storagecluster-cephfslugin-snapclass deletionPolicy = Retain applied ok"
+                  echo "volumesnapshotclass ocs-storagecluster-cephfslugin-snapclass deletionPolicy = Retain applied ok"
               else
                   echo "Failed to change volumesnapshotclass ocs-storagecluster-cephfsplugin-snapclass deletionPolicy"
               fi
