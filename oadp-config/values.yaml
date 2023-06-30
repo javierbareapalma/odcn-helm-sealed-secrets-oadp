@@ -1,10 +1,35 @@
-##
+###
 # OADP Chart Values File.
-##
+###
 #
-
 oadp:
 # bucket name
   bucketname: odcnoord-rgw-oadp-s3-bucket
 # StorageClass of bucket
   scbucket: ocs-storagecluster-ceph-rgw
+###
+
+
+###
+rgw:
+  enabled: true
+# Enable S3 RGW endpoint with SSL
+  ssl: true
+# Failure domain for the RGW pools, by default 'zone'.
+# Depending on your deployment, this may need to change it to rack or node.
+  failuredomain: zone
+
+# If mcg enabled is set to 'false', Noobaa/Multicloud gateway will not be deployed.
+mcg:
+  enabled: false
+
+odf:
+# Resource request/limits per service
+  rgw:
+    requests:
+      cpu: 1
+      memory: 4Gi
+    limits:
+      cpu: 2
+      memory: 4Gi
+###
