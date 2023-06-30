@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: labeling-volumesnapshotclasses
+  namespace: openshift-adp
   annotations:
     argocd.argoproj.io/sync-wave: "3"
     compare-options: IgnoreExtraneous
