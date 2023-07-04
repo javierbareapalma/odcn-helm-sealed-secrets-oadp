@@ -1,3 +1,5 @@
+clusterName: ODC-Noord_OCP
+
 ###
 # OADP Chart Values File.
 ###
@@ -11,6 +13,9 @@ oadp:
   cloudcreds-awsaccesskey: whatever1
   cloudcreds-awssecretkey: whatever2
 ###
+
+dpa:
+  region: noobaa
 
 ###
 rgw:

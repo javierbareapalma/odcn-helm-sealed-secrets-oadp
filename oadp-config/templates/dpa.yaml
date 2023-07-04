@@ -1,8 +1,10 @@
 apiVersion: oadp.openshift.io/v1alpha1
 kind: DataProtectionApplication
 metadata:
-  name: dpa
+  name: {{ .Values.clusterName }}-dpa
   namespace: openshift-adp
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
 spec:
   features:
     dataMover:
@@ -12,7 +14,7 @@ spec:
     - velero:
         config:
           profile: default
-          region: eu-west-2
+          region: {{ .Values.dpa.region | default "rgw" }}
           s3ForcePathStyle: "true"
           s3Url: "http://s3.openshift-storage.svc/"
         credential:
@@ -20,7 +22,7 @@ spec:
           name: cloud-credentials
         default: true
         objectStorage:
-          bucket: 'test-bucket1-d7ffc94b-bba0-4980-b390-057ddd3f92b9'
+          bucket: {{ .Values.oadp.bucketname | default "oadp-s3-bucket" }}
           prefix: velero
         provider: aws
   configuration:
