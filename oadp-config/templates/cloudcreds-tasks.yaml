@@ -1,16 +1,15 @@
-
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: cloudcreds-stuff
   namespace: openshift-adp
   argocd.argoproj.io/sync-wave: "4"
-  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  compare-options: IgnoreExtraneous
 spec:
   template:
     spec:
       containers:
-      - image: registry.redhat.io/openshift4/ose-cli:latest
+      - image: registry.redhat.io/openshift4/ose-cli:v4.11
         name: getting-cloudcreds
         command:
             - /bin/bash
