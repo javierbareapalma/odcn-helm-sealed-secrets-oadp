@@ -17,7 +17,7 @@ spec:
         args: 
           - |
             echo "Getting credentials from 'oadp-s3-bucket'";
-            oc extract secrets/oadp-s3-bucket -n openshift-adp --to=- > temporalfile;
+            oc extract secrets/oadp-s3-bucket -n openshift-adp --to=- ;
             jb=1;
 #            echo "[default]" >> temporalfile2;
 #            for item in $(cat temporalfile); do
