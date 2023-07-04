@@ -15,6 +15,9 @@ spec:
         command: ["/bin/bash", "-c"] 
         args: 
           - |
+            echo "Getting credentials from 'oadp-s3-bucket'";
+            oc extract secrets/{{ .Values.oadp.bucketname } -n openshift-adp --to=- > temporalfile;
+            jb=1;
             ACCESS_KEY="";
             SECRET_KEY="";
             while [[ z$ACCESS_KEY == z ]]; do
