@@ -16,7 +16,7 @@ spec:
           profile: default
           region: {{ .Values.dpa.region | default "rgw" }}
           s3ForcePathStyle: "true"
-          s3Url: "http://s3.openshift-storage.svc/"
+          s3Url: "https://s3-openshift-storage.apps.jbocp.sandbox305.opentlc.com"
         credential:
           key: cloud
           name: cloud-credentials
