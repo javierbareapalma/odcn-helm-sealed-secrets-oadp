@@ -3,8 +3,9 @@ kind: Job
 metadata:
   name: cloudcreds-stuff
   namespace: openshift-adp
-  argocd.argoproj.io/sync-wave: "4"
-  compare-options: IgnoreExtraneous
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+    compare-options: IgnoreExtraneous
 spec:
   template:
     spec:
