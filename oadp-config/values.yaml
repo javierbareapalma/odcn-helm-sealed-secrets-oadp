@@ -7,11 +7,10 @@ oadp:
   bucketname: oadp-s3-bucket
 # StorageClass of bucket
   scbucket: openshift-storage.noobaa.io
+#
+  cloudcreds-awsaccesskey: whatever1
+  cloudcreds-awssecretkey: whatever2
 ###
-
-oadp:
- cloudcreds-awsaccesskey: whatever1
- cloudcreds-awssecretkey: whatever2
 
 ###
 rgw:
