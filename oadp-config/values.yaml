@@ -1,4 +1,4 @@
-clusterName: cluster-ODC-Noord
+clusterName: odcnoord-ocp
 
 ###
 # OADP Chart Values File.
