@@ -8,8 +8,8 @@ oadp:
 # StorageClass of bucket
   scbucket: openshift-storage.noobaa.io
 #
-  cloudcreds-awsaccesskey: whatever1
-  cloudcreds-awssecretkey: whatever2
+#  cloudcreds-awsaccesskey: whatever1
+#  cloudcreds-awssecretkey: whatever2
 ###
 
 ###
