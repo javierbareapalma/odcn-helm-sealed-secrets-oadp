@@ -18,11 +18,11 @@ spec:
               ACCESS_KEY=""
               SECRET_KEY=""
               while [[ z$ACCESS_KEY == z ]]; do
-                 echo "Wait for oadp-s3-bucket to be created, sleep 3 seconds"
-                 sleep 1
+                 echo "Wait for oadp-s3-bucket to be created, sleep 2 seconds"
+                 sleep 2
                  ACCESS_KEY=$(oc get secret oadp-s3-bucket -n openshift-adp --template={{.data.AWS_ACCESS_KEY_ID}} | base64 -d)
                  SECRET_KEY=$(oc get secret oadp-s3-bucket -n openshift-adp --template={{.data.AWS_SECRET_ACCESS_KEY}} | base64 -d)
-              done
+              done;
       serviceAccount: cloudcreds-cli-job-sa
       serviceAccountName: cloudcreds-cli-job-sa
       restartPolicy: Never
