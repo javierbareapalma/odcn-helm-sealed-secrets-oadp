@@ -9,6 +9,9 @@ oadp:
   scbucket: openshift-storage.noobaa.io
 ###
 
+oadp:
+ cloudcreds-awsaccesskey: whatever1
+ cloudcreds-awssecretkey: whatever2
 
 ###
 rgw:

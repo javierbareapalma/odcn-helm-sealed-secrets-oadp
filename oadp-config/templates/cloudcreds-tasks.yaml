@@ -1,0 +1,95 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cloudcreds-cli-job-sa
+  namespace: openshift-adp
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cloudcreds-cli-job-sa-role
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+    verbs:
+      - get
+      - list
+      - create
+      - patch
+  - apiGroups:
+      - objectbucket.io
+    resources:
+      - objectbucketclaims
+    verbs:
+      - get
+      - list
+      - create
+      - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cloudcreds-argocd-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cloudcreds-cli-job-sa-role
+subjects:
+  - kind: ServiceAccount
+    name: cloudcreds-cli-job-sa
+    namespace: openshift-adp
+---
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cloudcreds-stuff
+  namespace: openshift-adp
+  argocd.argoproj.io/sync-wave: "4"
+  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  template:
+    spec:
+      containers:
+      - image: registry.redhat.io/openshift4/ose-cli:latest
+        name: getting-cloudcreds
+        command:
+            - /bin/bash
+            - -c
+            - |
+
+              #CONFIG_JSON=`oc extract secret/oadp-s3-bucket -n openshift-adp --to=-`
+              #oc create secret generic cloud-credentials -n openshift-adp \
+              #       --from-literal=.dockerconfigjson="$CONFIG_JSON"
+              
+              ACCESS_KEY=""
+              SECRET_KEY=""
+              while [[ z$ACCESS_KEY == z ]]; do
+                 echo "Wait for oadp-s3-bucket to be created, sleep 3 seconds"
+                 sleep 1
+                 ACCESS_KEY=$(oc get secret oadp-s3-bucket -n openshift-adp --template={{.data.AWS_ACCESS_KEY_ID}} | base64 -d)
+                 SECRET_KEY=$(oc get secret oadp-s3-bucket -n openshift-adp --template={{.data.AWS_SECRET_ACCESS_KEY}} | base64 -d)
+              done;
+
+              echo "Retreive bucket NAME"
+              BUCKET_NAME=$(oc get ObjectBucketClaim oadp-s3-bucket -n openshift-adp --template={{.spec.bucketName}})
+
+              echo "[default]" >> temporalfile
+              echo "aws_access_key_id=$ACCESS_KEY" >> temporalfile
+              echo "aws_secret_key_id=$SECRET_KEY" >> temporalfile
+
+              oc get secret cloud-credentials -n openshift-adp
+              if [[ $? == 1 ]]
+              then
+                echo ""
+                oc create secret generic cloud-credentials -n openshift-adp --from-file cloud=temporalfile
+              fi
+              echo -n "cloud-credentials secret CR-object already exists"
+      serviceAccount: cloudcreds-cli-job-sa
+      serviceAccountName: cloudcreds-cli-job-sa
+      restartPolicy: Never

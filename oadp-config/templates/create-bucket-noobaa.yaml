@@ -9,3 +9,7 @@ metadata:
 spec:
   bucketName: {{ .Values.oadp.bucketname | default "oadp-s3-bucket" }}
   storageClassName: {{ .Values.oadp.scbucket | default "openshift-storage.noobaa.io" }}
+#  additionalConfig:
+#    bucketclass: noobaa-default-bucket-class
+#  generateBucketName: 
+#  objectBucketName: 
