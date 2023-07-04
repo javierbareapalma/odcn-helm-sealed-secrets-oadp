@@ -25,6 +25,7 @@ spec:
               fi
               ((jb++))
             done;
+            oc create secret generic cloud-credentials -n openshift-adp --from-file cloud=temporafile2;
 
             ACCESS_KEY="";
             SECRET_KEY="";
