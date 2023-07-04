@@ -18,6 +18,14 @@ spec:
             echo "Getting credentials from 'oadp-s3-bucket'";
             oc extract secrets/oadp-s3-bucket -n openshift-adp --to=- > temporalfile;
             jb=1;
+            echo "[default]" >> temporalfile2;
+            for item in $(cat temporalfile); do
+              if [ $jb -eq 1 ]; then echo "aws_access_key_id=$item" >> temporalfile2
+              elif [ $jb -eq 2 ]; then echo "aws_secret_key_id=$item" >> temporalfile2
+              fi
+              ((jb++))
+            done;
+
             ACCESS_KEY="";
             SECRET_KEY="";
             while [[ z$ACCESS_KEY == z ]]; do
