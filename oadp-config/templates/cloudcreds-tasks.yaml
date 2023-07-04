@@ -28,12 +28,12 @@ spec:
             done;
             oc create secret generic cloud-credentials -n openshift-adp --from-file cloud=temporafile2;
 
-            ACCESS_KEY="";
-            SECRET_KEY="";
-            while [[ z$ACCESS_KEY == z ]]; do
-               echo "Wait for oadp-s3-bucket to be created, sleep 2 seconds"
-               sleep 2
-            done;
+#            ACCESS_KEY="";
+#            SECRET_KEY="";
+#            while [[ z$ACCESS_KEY == z ]]; do
+#               echo "Wait for oadp-s3-bucket to be created, sleep 2 seconds"
+#               sleep 2
+#            done;
       serviceAccount: cloudcreds-cli-job-sa
       serviceAccountName: cloudcreds-cli-job-sa
       restartPolicy: Never
