@@ -4,37 +4,29 @@ kind: ServiceAccount
 metadata:
   name: cloudcreds-cli-job-sa
   namespace: openshift-adp
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: cloudcreds-cli-job-sa-role
   annotations:
-    rbac.authorization.kubernetes.io/autoupdate: "true"
+    argocd.argoproj.io/sync-wave: "1"
 rules:
-  - apiGroups:
-      - ""
-    resources:
-      - secrets
-    verbs:
-      - get
-      - list
-      - create
-      - patch
-  - apiGroups:
-      - objectbucket.io
-    resources:
-      - objectbucketclaims
-    verbs:
-      - get
-      - list
-      - create
-      - patch
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get","list","create","patch"]
+  - apiGroups: ["objectbucket.io"]
+    resources: ["objectbucketclaims"]
+    verbs: ["get","list","create","patch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
   name: cloudcreds-argocd-rolebinding
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -62,11 +54,9 @@ spec:
             - /bin/bash
             - -c
             - |
-
               #CONFIG_JSON=`oc extract secret/oadp-s3-bucket -n openshift-adp --to=-`
               #oc create secret generic cloud-credentials -n openshift-adp \
               #       --from-literal=.dockerconfigjson="$CONFIG_JSON"
-              
               ACCESS_KEY=""
               SECRET_KEY=""
               while [[ z$ACCESS_KEY == z ]]; do
