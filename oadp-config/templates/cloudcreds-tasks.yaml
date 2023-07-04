@@ -10,19 +10,22 @@ spec:
     spec:
       containers:
       - image: registry.redhat.io/openshift4/ose-cli:v4.11
+        imagePullPolicy: IfNotPresent
         name: getting-cloudcreds
         command:
-            - /bin/bash
-            - -c
-            - |
-              ACCESS_KEY=""
-              SECRET_KEY=""
-              while [[ z$ACCESS_KEY == z ]]; do
-                 echo "Wait for oadp-s3-bucket to be created, sleep 2 seconds"
-                 sleep 2
-#                 ACCESS_KEY=$(oc get secret oadp-s3-bucket -n openshift-adp --template={{.data.AWS_ACCESS_KEY_ID}} | base64 -d)
-#                 SECRET_KEY=$(oc get secret oadp-s3-bucket -n openshift-adp --template={{.data.AWS_SECRET_ACCESS_KEY}} | base64 -d)
-              done;
+          - /bin/bash
+          - -c
+          - |
+
+            ACCESS_KEY=""
+            SECRET_KEY=""
+            while [[ z$ACCESS_KEY == z ]]; do
+               echo "Wait for oadp-s3-bucket to be created, sleep 2 seconds"
+               sleep 2
+#                ACCESS_KEY=$(oc get secret oadp-s3-bucket -n openshift-adp --template={{.data.AWS_ACCESS_KEY_ID}} | base64 -d)
+#                SECRET_KEY=$(oc get secret oadp-s3-bucket -n openshift-adp --template={{.data.AWS_SECRET_ACCESS_KEY}} | base64 -d)
+            done;
+
       serviceAccount: cloudcreds-cli-job-sa
       serviceAccountName: cloudcreds-cli-job-sa
       restartPolicy: Never
