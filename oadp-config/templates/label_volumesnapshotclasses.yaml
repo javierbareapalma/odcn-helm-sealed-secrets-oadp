@@ -14,22 +14,23 @@ spec:
         command:
             - /bin/bash
             - -c
+        args:
             - |
-              echo "Labeling volumesnapshotclasses in order to use the CSIsnapshot feature with Velero"
-              oc label VolumeSnapshotClass ocs-storagecluster-rbdplugin-snapclass velero.io/csi-volumesnapshot-class=true
-              if [ $? = 0 ]
+              echo "Labeling volumesnapshotclasses in order to use the CSIsnapshot feature with Velero";
+              oc label VolumeSnapshotClass ocs-storagecluster-rbdplugin-snapclass velero.io/csi-volumesnapshot-class=true;
+              if [ $? -eq 0 ]
               then
                   echo "labeling volumesnapshotclass.snapshot.storage.k8s.io/ocs-storagecluster-rbdplugin-snapclass applied ok"
               else
                   echo "Failed to label VolumeSnapshotClass  ocs-storagecluster-rbdplugin-snapclass"
-              fi
-              oc label VolumeSnapshotClass ocs-storagecluster-cephfsplugin-snapclass velero.io/csi-volumesnapshot-class=true
-              if [ $? = 0 ]
+              fi,
+              oc label VolumeSnapshotClass ocs-storagecluster-cephfsplugin-snapclass velero.io/csi-volumesnapshot-class=true;
+              if [ $? -eq 0 ]
               then
                   echo "labeling volumesnapshotclass.snapshot.storage.k8s.io/ocs-storagecluster-cephfsplugin-snapclass applied ok"
               else
                   echo "Failed to VolumeSnapshotClass  ocs-storagecluster-cephfsplugin-snapclass"
-              fi
+              fi;
         image: registry.redhat.io/openshift4/ose-cli:v4.11
       serviceAccount: label-volumesnapshotclasses
       serviceAccountName: label-volumesnapshotclasses

@@ -16,9 +16,8 @@ spec:
             - -c
         args: 
             - |
-              echo "Patching volumesnapshotclasses deletion Policy-";
+              echo "Patching volumesnapshotclasses deletion Policy";
               oc patch volumesnapshotclass ocs-storagecluster-rbdplugin-snapclass --type=merge -p '{"deletionPolicy": "Retain"}';
-              #oc get volumesnapshotclass ocs-storagecluster-rbdplugin-snapclass;
               if [ $? -eq 0 ]
               then
                   echo "volumesnapshotclass ocs-storagecluster-rbdplugin-snapclass deletionPolicy = Retain applied ok"
@@ -32,6 +31,7 @@ spec:
               else
                   echo "Failed to change volumesnapshotclass ocs-storagecluster-cephfsplugin-snapclass deletionPolicy"
               fi;
+              #oc get volumesnapshotclass ocs-storagecluster-rbdplugin-snapclass;
         image: registry.redhat.io/openshift4/ose-cli:v4.11
       serviceAccount: patch-volumesnapshotclasses
       serviceAccountName: patch-volumesnapshotclasses
