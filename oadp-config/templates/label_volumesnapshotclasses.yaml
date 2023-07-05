@@ -4,7 +4,7 @@ metadata:
   name: labeling-volumesnapshotclasses
   namespace: openshift-adp
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "2"
     compare-options: IgnoreExtraneous
 spec:
   template:
