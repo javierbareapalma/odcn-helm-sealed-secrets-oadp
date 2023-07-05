@@ -23,7 +23,7 @@ spec:
                   echo "labeling volumesnapshotclass.snapshot.storage.k8s.io/ocs-storagecluster-rbdplugin-snapclass applied ok"
               else
                   echo "Failed to label VolumeSnapshotClass  ocs-storagecluster-rbdplugin-snapclass"
-              fi,
+              fi;
               oc label VolumeSnapshotClass ocs-storagecluster-cephfsplugin-snapclass velero.io/csi-volumesnapshot-class=true;
               if [ $? -eq 0 ]
               then
