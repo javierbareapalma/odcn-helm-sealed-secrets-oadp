@@ -14,7 +14,8 @@ spec:
         command:
             - /bin/bash
             - -c
-        args: |
+        args: 
+            - |
               echo "Patching volumesnapshotclasses deletion Policy";
               oc patch volumesnapshotclass ocs-storagecluster-rbdplugin-snapclass --type=merge -p '{"deletionPolicy": "Retain"}';
               oc get volumesnapshotclass ocs-storagecluster-rbdplugin-snapclass;
