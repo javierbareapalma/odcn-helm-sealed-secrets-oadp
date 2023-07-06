@@ -23,7 +23,7 @@ spec:
           name: cloud-credentials
         default: true
         objectStorage:
-          bucket: {{ .Values.oadp.bucketname }}
+          bucket: {{ .Values.oadp.bucketname | default "ocs-storagecluster-ceph-rgw" }}
           prefix: velero
         provider: aws
   configuration:

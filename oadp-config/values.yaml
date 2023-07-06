@@ -15,7 +15,7 @@ oadp:
 ###
 
 dpa:
-  region: noobaa
+  region: rgw
 
 ###
 rgw:
