@@ -4,7 +4,7 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: patch-volumesnapshotclasses
+  name: volumesnapshotclasses-sa
   namespace: openshift-adp
   annotations:
     argocd.argoproj.io/sync-wave: "1"
@@ -12,62 +12,61 @@ metadata:
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: patch-volumesnapshotclasses
+  name: volumesnapshotclasses-cr
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 rules:
-- apiGroups: ["snapshot.storage.k8s.io"] # core API group
-  resources: ["volumesnapshotclasses"]
-  verbs: ["get","patch"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: patch-volumesnapshotclasses
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
-subjects:
-  - kind: ServiceAccount
-    name: patch-volumesnapshotclasses
-    namespace: openshift-adp
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: patch-volumesnapshotclasses
-
-# 2 group
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: label-volumesnapshotclasses
-  namespace: openshift-adp
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
----
-kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: label-volumesnapshotclasses
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
-rules:
-- apiGroups: ["snapshot.storage.k8s.io"] # core API group
+- apiGroups: ["snapshot.storage.k8s.io"]
   resources: ["volumesnapshotclasses"]
   verbs: ["get","update","patch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: label-volumesnapshotclasses
+  name: volumesnapshotclasses-crb
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 subjects:
   - kind: ServiceAccount
-    name: label-volumesnapshotclasses
+    name: volumesnapshotclasses-sa
     namespace: openshift-adp
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: label-volumesnapshotclasses
+  name: volumesnapshotclasses-cr
 
+# 2 group
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sealedsecrets-sa
+  namespace: openshift-adp
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: sealedsecrets-cr
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+rules:
+- apiGroups: ["bitnami.com"]
+  resources: ["sealedsecrets"]
+  verbs: ["get","create","update","patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: sealedsecrets-crb
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+subjects:
+  - kind: ServiceAccount
+    name: sealedsecrets-sa
+    namespace: openshift-adp
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: sealedsecrets-cr
