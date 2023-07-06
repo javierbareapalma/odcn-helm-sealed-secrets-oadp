@@ -75,6 +75,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: argocd-sealedsecrets-rb
+  namespace: openshift-adp
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 subjects:
