@@ -14,10 +14,8 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: volumesnapshotclasses.snapshot.storage.k8s.io-v1-admin
-# oc adm policy add-cluster-role-to-user argocd-volumesnapshotclasses system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller -n openshift-adp
-# oc adm policy add-role-to-user admin system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller -n openshift-adp
----
 
+---
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -33,4 +31,41 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: sealedsecrets.bitnami.com-v1alpha1-admin
+---
+
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: argocd-backups
+  namespace: openshift-adp
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+subjects:
+  - kind: ServiceAccount
+    name: openshift-gitops-argocd-application-controller
+    namespace: openshift-gitops
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: backups.velero.io-v1-admin
+---
+
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: argocd-backupstoragelocations
+  namespace: openshift-adp
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+subjects:
+  - kind: ServiceAccount
+    name: openshift-gitops-argocd-application-controller
+    namespace: openshift-gitops
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: backupstoragelocations.velero.io-v1-admin
+---
+# oc adm policy add-cluster-role-to-user argocd-volumesnapshotclasses system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller -n openshift-adp
+# oc adm policy add-role-to-user admin system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller -n openshift-adp
 

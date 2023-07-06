@@ -16,6 +16,7 @@ oadp:
 
 dpa:
   region: rgw
+  nsprojecttobackup: mysql-persistent
 
 ###
 rgw:
