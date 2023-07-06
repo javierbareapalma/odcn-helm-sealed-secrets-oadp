@@ -23,7 +23,7 @@ spec:
           name: cloud-credentials
         default: true
         objectStorage:
-          bucket: oadp-s3-bucket2-b4928ef8-ae9c-4131-975b-e30ad9ddcddf
+          bucket: {{ .Values.oadp.bucketname }}
           prefix: velero
         provider: aws
   configuration:
