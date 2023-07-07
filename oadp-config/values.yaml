@@ -8,14 +8,14 @@ oadp:
 # bucket name
   bucketname: oadp-s3-bucket
 # StorageClass of bucket
-  scbucket: ocs-storagecluster-ceph-rgw  # openshift-storage.noobaa.io
+  scbucket: openshift-storage.noobaa.io
 #
   cloudcreds-awsaccesskey: whatever1
   cloudcreds-awssecretkey: whatever2
 ###
 
 dpa:
-  region: rgw
+  region: noobaa
   nsprojecttobackup: mysql-persistent
 
 ###
