@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: showing-backups
+  namespace: openshift-adp
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+    compare-options: IgnoreExtraneous
+spec:
+  template:
+    spec:
+      containers:
+      - name: showing-backups
+        command:
+            - /bin/bash
+            - -c
+        args: 
+            - |
+              echo "Showing current OADP backups";
+              oc get backup -n openshift-adp;
+              echo "\n";
+              oc -n openshift-adp exec deployment/velero -c velero -it -- ./velero backup get;
+        image: registry.redhat.io/openshift4/ose-cli:v4.11
+      serviceAccount: backups-restores-sa
+      serviceAccountName: backups-restores-sa
+      restartPolicy: Never
