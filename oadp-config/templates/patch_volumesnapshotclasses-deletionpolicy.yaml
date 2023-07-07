@@ -33,6 +33,8 @@ spec:
               fi;
               #oc get volumesnapshotclass ocs-storagecluster-rbdplugin-snapclass;
         image: registry.redhat.io/openshift4/ose-cli:v4.11
-      serviceAccount: volumesnapshotclasses-sa
-      serviceAccountName: volumesnapshotclasses-sa
+#      serviceAccount: volumesnapshotclasses-sa
+#      serviceAccountName: volumesnapshotclasses-sa
+      serviceAccount: openshift-gitops-argocd-application-controller
+      serviceAccountName: openshift-gitops-argocd-application-controller
       restartPolicy: Never
