@@ -52,7 +52,7 @@ rules:
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: argocd-obcs-rb
+  name: obcs-argocd-rb
   namespace: openshift-adp
   annotations:
     argocd.argoproj.io/sync-wave: "1"
@@ -142,7 +142,7 @@ roleRef:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: argocd-sealedsecrets-rb
+  name: sealedsecrets-argocd-rb
   namespace: openshift-adp
   annotations:
     argocd.argoproj.io/sync-wave: "1"
