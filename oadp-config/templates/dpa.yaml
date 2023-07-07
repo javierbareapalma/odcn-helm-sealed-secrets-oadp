@@ -16,9 +16,9 @@ spec:
           profile: "default"
           region: {{ .Values.dpa.region }}
           {{ if eq .Values.dpa.region "noobaa" }}
-          s3ForcePathStyle: {{ .Values.dpa.s3ForcePathStyle }}
           s3Url: {{ .Values.dpa.s3Url }}
-          insecureSkipTLSVerify: {{ .Values.dpa.insecureSkipTLSVerify }}
+          s3ForcePathStyle: {{ .Values.dpa.s3ForcePathStyle | default "true" }}
+          insecureSkipTLSVerify: {{ .Values.dpa.insecureSkipTLSVerify | default "true" }}
           {{ else if eq .Values.dpa.region "aws" }}
           {{ end }}
         credential:
