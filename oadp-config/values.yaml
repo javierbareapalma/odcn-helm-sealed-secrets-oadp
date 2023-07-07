@@ -16,10 +16,10 @@ oadp:
 
 dpa:
   region: noobaa
-  nsprojecttobackup: mysql-persistent
   s3Url: "https://s3-openshift-storage.apps.jbocp.sandbox1682.opentlc.com"
   s3ForcePathStyle: "true"
   insecureSkipTLSVerify: "true"
+  nsprojecttobackup: mysql-persistent
 
 ###
 rgw:
