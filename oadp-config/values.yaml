@@ -1,7 +1,7 @@
 clusterName: odcnoord-ocp
  
 ###
-# OADP Chart Values File.
+# OADP Chart Values File. BEGIN
 ###
 #
 oadp:
@@ -9,10 +9,11 @@ oadp:
   bucketname: oadp-s3-bucket
 # StorageClass of bucket
   scbucket: openshift-storage.noobaa.io
+  #scbucket: ocs-storagecluster-ceph-rgw
 #
   cloudcreds-awsaccesskey: whatever1
   cloudcreds-awssecretkey: whatever2
-###
+#
 
 dpa:
   region: noobaa
@@ -20,6 +21,10 @@ dpa:
   s3ForcePathStyle: "true"
   insecureSkipTLSVerify: "true"
   nsprojecttobackup: mysql-persistent
+###
+# OADP Chart Values File. END
+###
+
 
 ###
 rgw:
@@ -31,8 +36,8 @@ rgw:
   failuredomain: zone
 
 # If mcg enabled is set to 'false', Noobaa/Multicloud gateway will not be deployed.
-mcg:
-  enabled: false
+#mcg:
+#  enabled: false
 
 odf:
 # Resource request/limits per service

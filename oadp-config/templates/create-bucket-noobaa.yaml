@@ -9,8 +9,12 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   bucketName: {{ .Values.oadp.bucketname | default "oadp-s3-bucket" }}
+  {{ if eq .Values.oadp.scbucket "openshift-storage.noobaa.io" }}
   objectBucketName: {{ .Values.oadp.bucketname | default "oadp-s3-bucket" }}
   storageClassName: {{ .Values.oadp.scbucket | default "openshift-storage.noobaa.io" }}
-#  generateBucketName: 
+  #generateBucketName: this is a prefix
   additionalConfig:
     bucketclass: noobaa-default-bucket-class
+  {{ else if eq .Values.oadp.scbucket "ocs-storagecluster-ceph-rgw" }}
+  storageClassName: {{ .Values.oadp.scbucket | default "ocs-storagecluster-ceph-rgw" }}
+  {{ end }}
