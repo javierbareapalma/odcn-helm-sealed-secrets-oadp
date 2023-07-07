@@ -14,16 +14,19 @@ spec:
     - velero:
         config:
           profile: "default"
-          region: {{ .Values.dpa.region | default "rgw" }}
-          s3ForcePathStyle: "true"
-          s3Url: "https://s3-openshift-storage.apps.jbocp.sandbox305.opentlc.com"
-          insecureSkipTLSVerify: "true"
+          region: {{ .Values.dpa.region }}
+          {{ if eq .Values.dpa.region "noobaa" }}
+          s3ForcePathStyle: {{ .Values.dpa.s3ForcePathStyle }}
+          s3Url: {{ .Values.dpa.s3Url }}
+          insecureSkipTLSVerify: {{ .Values.dpa.insecureSkipTLSVerify }}
+          {{ else if eq .Values.dpa.region "aws" }}
+          {{ end }}
         credential:
           key: cloud
           name: cloud-credentials
         default: true
         objectStorage:
-          bucket: {{ .Values.oadp.bucketname | default "ocs-storagecluster-ceph-rgw" }}
+          bucket: {{ .Values.oadp.bucketname }}
           prefix: velero
         provider: aws
   configuration:
