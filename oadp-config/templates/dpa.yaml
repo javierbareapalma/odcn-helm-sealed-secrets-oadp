@@ -21,7 +21,10 @@ spec:
           s3ForcePathStyle: "true"
           insecureSkipTLSVerify: "true"
           {{ else if eq .Values.dpa.region "rgw" }}
-          {{ else if eq .Values.dpa.region "aws" }}
+          s3Url: {{ .Values.dpa.s3Url | quote}}
+          s3ForcePathStyle: "true"
+          #insecureSkipTLSVerify: "true"
+          {{ - else if contains "aws" $.Values.oadp.scbucket }}
           #s3Url: http://{{ $.Values.oadp.bucketname }}.s3-website.{{ $.Values.dpa.region }}.amazonaws.com/
           #s3ForcePathStyle: "true"
           #insecureSkipTLSVerify: "true"

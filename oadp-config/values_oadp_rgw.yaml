@@ -18,7 +18,7 @@ oadp:
 
 dpa:
   region: rgw
-  s3Url: "https://s3-openshift-storage.apps.jbocp.sandbox1682.opentlc.com"
+  s3Url: "http://ocs-storagecluster-cephobjectstore-openshift-storage.apps.ref3.gn2.quattro.rijksapps.nl"
   s3ForcePathStyle: "true"
   insecureSkipTLSVerify: "true"
   nsprojecttobackup: mysql-persistent
