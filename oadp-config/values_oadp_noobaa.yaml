@@ -1,0 +1,43 @@
+clusterName: odcnoord-ocp
+ 
+###
+# OADP Chart Values File. BEGIN
+###
+#
+oadp:
+# dm-restic-secret
+  dmresticsecret: AgAGg2nNVZFqP0kd7N7FjmRGuHppVGZvO2WVsCGHAjVHBYz94TLbvHk3btzqsbmW4jWgz5J4BpFm7RYkVCuTrZSiHCGl0yR9NfyDfC0BkDqrAI2wS9Fu6Tfskb1hfV5pK5CmhvaP6k5Eg7keA39RcwN7DySTRonNqfQI+rzYS8/FR+Cd7br3q/B2sYKP+6uYika3Gp1eStNjw34rEWiffSfCavQvzpNsxQJlbco/YmJY8rYR1449FlLMdvcbqtqlKuN+xToQEjTQdGwquuaDA23tqaLN4hkgp58Cd1Pf1i3jlRjuvOz6JTHCobAhRnDFiExheYcu8mvNOd5CgjhxvbBAa+3MJREeMRgxaUPB1r2nSveShuDiIMikWzx+EvuYCp0y+bbShl7gSKR76vGhiDxLRkFcTG4ZfqV0JGh8eE57mSn8eVCql2jAeSgQZqP8MoFI/6qFgvveWxJ8A9TKypLM6ecHp2pzNO6RhB+S/sjqivG/GfzjwfMWGAoX16tNqeOkQSOuvPloOqzC2u1pc6PrxJ6c7bkjAayTUDZEmcoGotciydJYglKMFlo0wpYOZcx6eNrNkucBQioFTUKRs4d4qk4W7CZmj0CP6gTElz1LawepaeEsKH1ZQERw2fcEk7N2IDPkE6WQ2J0OmxivSaliovOfXKXzezd57hFh6CBVGFZ0x03CaTxuComIGxRD/ov7jXvRX0ffr/mnYT4ARjY=
+# bucket name
+  bucketname: oadp-s3-bucket
+# StorageClass of bucket
+  scbucket: openshift-storage.noobaa.io
+  #scbucket: ocs-storagecluster-ceph-rgw
+#
+  cloudcreds-awsaccesskey: whatever1
+  cloudcreds-awssecretkey: whatever2
+  cloudcreds: AgCs4k2Xaes3JcVWORbHEbWnlTA6qm992jUfint2Osxt/rYjrI65Yh12qkeu/dip5C58W63Y/8PFESCevh8R3JZEZIJ2JCZ0zWvrXPJ1jhwnUNhqVbyxIztPPzK/h9PXNiaYjAQjtWOg27ER9nyBi78mVhkafAseOZWtORGL91pLzJWYCEgMPneR4F5z00yLmmURks2co9fjR1nBERMqW6zfHFZwYRGK0ssfeoSRcFSHP1/OAS2M+Y8NKoipp+BW0mboizH6qDZVKMxWqEgLLvjPuNUDfQt+BoHE5gg75WNa+gouyKVtbsFIiraymtPkaTe+BYQmjQuBe70Gr4nRBjvnUgVNCytxf42VRfw/SmHc+YEuFiuZ5lA4JFkXzDmF84QrwheUJ1TaVTFVhh3oSxfDGZPcbvs1Zlc4538uDxzXtKBc4haE6AtOmrODPfuGCgPcnFrSmRFU8oRdqmVHRQ3xaeEPko5unOK5QmrhimGIMTLiO7h1kaQPGgMElgRqDNUzUfhWYmcg9El/3JeFAqrSSQXXwDsxXzALoP0jV98CDq7/rkf4U1V3cPnl/mtG1CuzWEtc/OIbGZiVIfBaw+VtbvpsC4k6MtPn8iazk5UBXTWmXhSJcnCicB5R3Mn1m9GggxGIaXoam03aBv5zDHVTIRQ/wFO9BRXxqZbpcx/ZRrmLDK6X69wZyxxmfmQICq9w8n1RvyZ+ZO3rgVCgD+7WHwz853z3a5ZeQ7Fut8ESZM+fWBiX5/wLdytDCYAiFEKXsDloFNaxae9QJAE1NEwAifqIUMjEw751WESXCppN8BLrPMRcC/r0GNKcpd5Nb1GujsnabaZj80IrbSwVh0Xz
+#
+
+dpa:
+  region: noobaa
+  s3Url: "https://s3-openshift-storage.apps.jbocp.sandbox1682.opentlc.com"
+  s3ForcePathStyle: "true"
+  insecureSkipTLSVerify: "true"
+  nsprojecttobackup: mysql-persistent
+###
+# OADP Chart Values File. END
+###
+
+
+###
+rgw:
+  enabled: true
+# Enable S3 RGW endpoint with SSL
+  ssl: true
+# Failure domain for the RGW pools, by default 'zone'.
+# Depending on your deployment, this may need to change it to rack or node.
+  failuredomain: zone
+
+# If mcg enabled is set to 'false', Noobaa/Multicloud gateway will not be deployed.
+#mcg:
+#  enabled: false

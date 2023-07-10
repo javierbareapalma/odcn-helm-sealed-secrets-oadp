@@ -16,6 +16,6 @@ spec:
       - volsync-values.yaml
     path: operatorhub
     repoURL: https://github.com/javierbareapalma/odcn-helm-sealed-secrets-oadp.git
-    targetRevision: rh-jbareapa
+    targetRevision: rh-jbareapa-oadp-aws
   syncPolicy:
     automated: {}

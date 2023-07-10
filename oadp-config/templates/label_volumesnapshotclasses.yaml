@@ -4,7 +4,7 @@ metadata:
   name: labeling-volumesnapshotclasses
   namespace: openshift-adp
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "2"
     compare-options: IgnoreExtraneous
 spec:
   template:
@@ -23,7 +23,7 @@ spec:
                   echo "labeling volumesnapshotclass.snapshot.storage.k8s.io/ocs-storagecluster-rbdplugin-snapclass applied ok"
               else
                   echo "Failed to label VolumeSnapshotClass  ocs-storagecluster-rbdplugin-snapclass"
-              fi,
+              fi;
               oc label VolumeSnapshotClass ocs-storagecluster-cephfsplugin-snapclass velero.io/csi-volumesnapshot-class=true;
               if [ $? -eq 0 ]
               then
@@ -32,6 +32,6 @@ spec:
                   echo "Failed to VolumeSnapshotClass  ocs-storagecluster-cephfsplugin-snapclass"
               fi;
         image: registry.redhat.io/openshift4/ose-cli:v4.11
-      serviceAccount: label-volumesnapshotclasses
-      serviceAccountName: label-volumesnapshotclasses
+      serviceAccount: volumesnapshotclasses-sa
+      serviceAccountName: volumesnapshotclasses-sa
       restartPolicy: Never

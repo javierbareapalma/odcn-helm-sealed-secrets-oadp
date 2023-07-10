@@ -1,3 +1,4 @@
+
 apiVersion: oadp.openshift.io/v1alpha1
 kind: DataProtectionApplication
 metadata:
@@ -14,16 +15,23 @@ spec:
     - velero:
         config:
           profile: "default"
-          region: {{ .Values.dpa.region | default "rgw" }}
+          region: {{ .Values.dpa.region | quote }}
+          {{ if eq .Values.dpa.region "noobaa" }}
+          s3Url: {{ .Values.dpa.s3Url | quote}}
           s3ForcePathStyle: "true"
-          s3Url: "https://s3-openshift-storage.apps.jbocp.sandbox305.opentlc.com"
           insecureSkipTLSVerify: "true"
+          {{ else if eq .Values.dpa.region "rgw" }}
+          {{ else if eq .Values.dpa.region "aws" }}
+          s3Url: http://$(.Values.oadp.bucketname).s3-website.$(.Values.dpa.region).amazonaws.com/
+          s3ForcePathStyle: "true"
+          insecureSkipTLSVerify: "true"
+          {{ end }}
         credential:
           key: cloud
           name: cloud-credentials
         default: true
         objectStorage:
-          bucket: oadp-s3-bucket2-b4928ef8-ae9c-4131-975b-e30ad9ddcddf
+          bucket: {{ .Values.oadp.bucketname | quote }}
           prefix: velero
         provider: aws
   configuration:
