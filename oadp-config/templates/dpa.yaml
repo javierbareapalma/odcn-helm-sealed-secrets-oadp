@@ -20,6 +20,7 @@ spec:
           s3Url: {{ .Values.dpa.s3Url | quote}}
           s3ForcePathStyle: "true"
           insecureSkipTLSVerify: "true"
+          {{ else if eq .Values.dpa.region "rgw" }}
           {{ else if eq .Values.dpa.region "aws" }}
           {{ end }}
         credential:
