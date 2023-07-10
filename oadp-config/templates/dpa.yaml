@@ -22,6 +22,9 @@ spec:
           insecureSkipTLSVerify: "true"
           {{ else if eq .Values.dpa.region "rgw" }}
           {{ else if eq .Values.dpa.region "aws" }}
+          s3Url: http://$(.Values.oadp.bucketname).s3-website.$(.Values.dpa.region).amazonaws.com/
+          s3ForcePathStyle: "true"
+          insecureSkipTLSVerify: "true"
           {{ end }}
         credential:
           key: cloud
