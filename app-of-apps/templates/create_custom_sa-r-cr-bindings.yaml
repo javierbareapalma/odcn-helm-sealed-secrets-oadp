@@ -91,7 +91,7 @@ rules:
   resources: ["deployments","replicasets"]
   verbs: ['*']
 - apiGroups: [""]
-  resources: ["pods"]
+  resources: ["pods","pods/exec"]
   verbs: ["get","list","create","patch","delete"]
 ---
 kind: ClusterRoleBinding
