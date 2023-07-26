@@ -17,16 +17,16 @@ spec:
           profile: "default"
           region: {{ .Values.dpa.region | quote }}
           {{ if eq .Values.dpa.region "noobaa" }}
-          s3Url: {{ .Values.dpa.s3Url | quote}}
+          s3Url: {{ .Values.dpa.s3Url | quote }}
           s3ForcePathStyle: "true"
           insecureSkipTLSVerify: "true"
           {{ else if eq .Values.dpa.region "rgw" }}
-          s3Url: {{ .Values.dpa.s3Url | quote}}
+          s3Url: {{ .Values.dpa.s3Url | quote }}
           s3ForcePathStyle: "true"
           #insecureSkipTLSVerify: "true"
-          {{ - else if contains "aws" $.Values.oadp.scbucket }}
+          {{ else if contains "aws" $.Values.oadp.scbucket }}
           #s3Url: http://{{ $.Values.oadp.bucketname }}.s3-website.{{ $.Values.dpa.region }}.amazonaws.com/
-          #s3ForcePathStyle: "true"
+          s3ForcePathStyle: "true"
           #insecureSkipTLSVerify: "true"
           {{ end }}
         credential:
@@ -46,4 +46,3 @@ spec:
         - aws
         - csi
         - vsm
-
