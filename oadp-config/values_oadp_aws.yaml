@@ -10,7 +10,7 @@ oadp:
 # bucket name
   bucketname: oadp-s3-bucket-69
 # StorageClass of bucket
-  scbucket: s3aws-standard  
+  scbucket: s3aws-standard
 #
   cloudcreds-awsaccesskey: whatever1
   cloudcreds-awssecretkey: whatever2
@@ -22,7 +22,7 @@ dpa:
   s3Url: ""
   s3ForcePathStyle: "true"
   insecureSkipTLSVerify: "true"
-  nsprojecttobackup: mysql-persistent
+  nsprojecttobackup: pacman
 ###
 # OADP Chart Values File. END
 ###
