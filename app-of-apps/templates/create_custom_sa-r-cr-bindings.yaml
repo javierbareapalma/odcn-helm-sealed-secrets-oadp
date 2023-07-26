@@ -90,6 +90,9 @@ rules:
 - apiGroups: ["apps"]
   resources: ["deployments","replicasets"]
   verbs: ['*']
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get","list"]
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
@@ -105,9 +108,7 @@ roleRef:
   name: veleroresources-cr  
 
 
-
-
-# X group
+# 4th group sealed secrets auth (not AWS)
 ---
 apiVersion: v1
 kind: ServiceAccount

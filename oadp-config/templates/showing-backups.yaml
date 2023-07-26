@@ -18,7 +18,6 @@ spec:
             - |
               echo "Showing current OADP backups";
               oc get backup -n openshift-adp;
-              echo "\n";
               oc -n openshift-adp exec deployment/velero -c velero -it -- ./velero backup get;
         image: registry.redhat.io/openshift4/ose-cli:latest
         #image: registry.redhat.io/openshift4/ose-cli:v4.11
