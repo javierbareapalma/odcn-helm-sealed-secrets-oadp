@@ -31,7 +31,8 @@ spec:
               else
                   echo "Failed to change volumesnapshotclass ocs-storagecluster-cephfsplugin-snapclass deletionPolicy"
               fi;
-        image: registry.redhat.io/openshift4/ose-cli:v4.11
+        image: registry.redhat.io/openshift4/ose-cli:latest
+        #image: registry.redhat.io/openshift4/ose-cli:v4.11
       serviceAccount: volumesnapshotclasses-sa
       serviceAccountName: volumesnapshotclasses-sa
       restartPolicy: Never
