@@ -1,5 +1,5 @@
 
-# 1 group
+# 1st group patching and labelling
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -37,7 +37,7 @@ roleRef:
   name: volumesnapshotclasses-cr
 
 
-# 2 group
+# 2nd group object bucket claim creation
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -67,7 +67,7 @@ roleRef:
   name: obcs-cr
 
 
-# 3 group
+# 3rd group oadp backup and restores
 ---
 apiVersion: v1
 kind: ServiceAccount
