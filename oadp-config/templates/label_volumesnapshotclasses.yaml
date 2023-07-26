@@ -31,7 +31,7 @@ spec:
               else
                   echo "Failed to VolumeSnapshotClass  ocs-storagecluster-cephfsplugin-snapclass"
               fi;
-        image: registry.redhat.io/openshift4/ose-cli:v4.11
+        image: registry.redhat.io/openshift4/ose-cli:latest
       serviceAccount: volumesnapshotclasses-sa
       serviceAccountName: volumesnapshotclasses-sa
       restartPolicy: Never
