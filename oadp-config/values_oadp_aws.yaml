@@ -1,0 +1,28 @@
+clusterName: odcnoord-ocp
+ 
+###
+# OADP Chart Values File. BEGIN
+###
+#
+oadp:
+# dm-restic-secret
+  dmresticsecret: AgAGGMEzoaU/huOEeJlVqrJMOCgKfOi/hO3KGk5OkpRCq8zqS8UMiNBpcsycmDZO9kfyeQmnXBQS9nLdt6d5ly2iC+B+nNXgmrj1tz7ftakhSEZB/zEoPotUwYE+a4DRr6vLUTaXYhTY7kK5ee2R404N7XzUkRATpukBMDgrux4qHRMdJZTwciSmWFrwl4ovWPbYDqWjkt+to76aC3aDtO9NFOjo4JQcpi53qBkg+bsW0nQvamFJ+cJOXYj2hJ6Fe1tjHQGiaZ3wCNqj6iYnYuDWRyLsFLXqGOXKmCdloUbFXXTfbCi+PLKm2CDr2niagqKYqRVd38gkA2ARj0qZk+hBcZdkdoRRQR8c0HTweJNttWGnmUQpDyQU/TbThpKoYV0FbfT0bRYVXH4+xOkkYyucfmuasmgEjvUHNXID8JqkdsiQ3upRDmnRqkhQXuZoHhvwPdqG5RalHdElJ+PWGdQvLSGsg9RrFDF5SkoYFfh2qtBZGHnxZwDVNUQTTsa2RryWRoGLx41wMTr7eny9Ta/6C/mmnOtWAUn8WEsLTKs34rW0tTGL8THUn9jZunquNmkq4+sESSOhTMrits8UUzxFyPdgCA7ZvesHSWezOBKQ5WThsuZMS9pBu/6KpgBSKgG2SWSd3Kd0DX31Vf0Otj6VML3c1jIzcWvu22O6hnzMl6q0lSjyPRvSsp6rrniNugwxr4zHJi7/IZu4LHeF900=
+# bucket name
+  bucketname: oadp-s3-bucket-69
+# StorageClass of bucket
+  scbucket: s3aws-standard
+#
+  cloudcreds-awsaccesskey: whatever1
+  cloudcreds-awssecretkey: whatever2
+  cloudcreds: AgBqEwPtT7V6nHLu7O6oOIzoZZ20OW5KJoK+qIcQtTIB7B6dGsshe80gGKEvjBFgkj+gI9v2JzZeeiHAtw9TGvQW6CiMCwqvbtAf008k0bSKmzdew5IJnWOBNRw87kpiIonwuu6r0jFD57erALpKv60zxrJejhqdvk4wL7Yj+W2op8FqhWD9iKtSXzFyf2sX+Of7SGd41EuDImGAt9J9Cq528Muv2+1wj7ObQGOjud0TgszUboHnQU8HqpMM05J3EWEZE4L/04EdHTkWyo9XJzjuijPBYN3L240BudSI+4F7PZWs3ZVY6GJDh3U7at4uIiAD/4ED0EQku4koZjLuvEbVsI+2QFDHIv8DZIAm9rqQ7TyVD7Q004qo/5RBE3wYPRLPlAdl6qZ8uhWxlr4ptNWx3oE7RqEgPgLrDpQURN1823a1vNnM2aAPkYhRB4Og3R00wCwt5wcXV10t/tGCvao+i1+pjfC98aEL3HRWJi5dqcjZfKuyVsCZusduIMLodpavq1psm0OH8LgYq0QeM7tfajIHxl49TF1afK4djSBmtVDONdITohW3bCKo2b9YG1de3hZcC1o62iSo5o8oKutyJxQSL9RI8BMjfn5Ta95+hbXlVagCUNJZ15K1xn5B1LrehBwxJkrT9nQq3zjATJ1nw39HLSw4NTTqu/BLYmcWbHNTsuPvCD9aD60PR3/iFfw5JTrS8FB/3A3B+JR7PRP8V2IKwEvJ/5PtRb8ndWO10jjf6nGdN/MPWWJ1WkOSqJTWVtD39BeSRIz85O8OtQNBaq7yy0dHU3BSsJ72e7sLhbmxLjRI59ZAc2vmqNxwVhnwffuIur/cBEopeBRsF6rusnX26Q==
+#
+
+dpa:
+  region: eu-central-1
+  s3Url: ""
+  s3ForcePathStyle: "true"
+  insecureSkipTLSVerify: "true"
+  nsprojecttobackup: pacman
+###
+# OADP Chart Values File. END
+###

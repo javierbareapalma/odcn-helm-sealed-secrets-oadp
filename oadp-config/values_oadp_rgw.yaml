@@ -1,0 +1,28 @@
+clusterName: odcnoord-ocp
+ 
+###
+# OADP Chart Values File. BEGIN
+###
+#
+oadp:
+# dm-restic-secret
+  dmresticsecret: AgAGg2nNVZFqP0kd7N7FjmRGuHppVGZvO2WVsCGHAjVHBYz94TLbvHk3btzqsbmW4jWgz5J4BpFm7RYkVCuTrZSiHCGl0yR9NfyDfC0BkDqrAI2wS9Fu6Tfskb1hfV5pK5CmhvaP6k5Eg7keA39RcwN7DySTRonNqfQI+rzYS8/FR+Cd7br3q/B2sYKP+6uYika3Gp1eStNjw34rEWiffSfCavQvzpNsxQJlbco/YmJY8rYR1449FlLMdvcbqtqlKuN+xToQEjTQdGwquuaDA23tqaLN4hkgp58Cd1Pf1i3jlRjuvOz6JTHCobAhRnDFiExheYcu8mvNOd5CgjhxvbBAa+3MJREeMRgxaUPB1r2nSveShuDiIMikWzx+EvuYCp0y+bbShl7gSKR76vGhiDxLRkFcTG4ZfqV0JGh8eE57mSn8eVCql2jAeSgQZqP8MoFI/6qFgvveWxJ8A9TKypLM6ecHp2pzNO6RhB+S/sjqivG/GfzjwfMWGAoX16tNqeOkQSOuvPloOqzC2u1pc6PrxJ6c7bkjAayTUDZEmcoGotciydJYglKMFlo0wpYOZcx6eNrNkucBQioFTUKRs4d4qk4W7CZmj0CP6gTElz1LawepaeEsKH1ZQERw2fcEk7N2IDPkE6WQ2J0OmxivSaliovOfXKXzezd57hFh6CBVGFZ0x03CaTxuComIGxRD/ov7jXvRX0ffr/mnYT4ARjY=
+# bucket name
+  bucketname: oadp-s3-bucket
+# StorageClass of bucket
+  scbucket: ocs-storagecluster-ceph-rgw
+#
+  cloudcreds-awsaccesskey: whatever1
+  cloudcreds-awssecretkey: whatever2
+  cloudcreds: to-include-sealed-secret-generated-previously-by-kubeseal-using-cluster-cer-pem
+#
+
+dpa:
+  region: rgw
+  s3Url: "http://ocs-storagecluster-cephobjectstore-openshift-storage.apps.ref3.gn2.quattro.rijksapps.nl"
+  s3ForcePathStyle: "true"
+  insecureSkipTLSVerify: "true"
+  nsprojecttobackup: mysql-persistent
+###
+# OADP Chart Values File. END
+###

@@ -10,6 +10,8 @@ kind: OperatorGroup
 metadata:
   name: {{ $op.name | quote }} 
   namespace: {{ $namespace | quote }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-4"
 spec:
   {{- if $og.namespaceSelector }}
   selector:

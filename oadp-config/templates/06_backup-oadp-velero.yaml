@@ -1,0 +1,11 @@
+apiVersion: velero.io/v1
+kind: Backup
+metadata:
+  name: {{ .Values.clusterName }}-backup-oadp-velero
+  namespace: openshift-adp
+spec:
+  hooks: {}
+  includedNamespaces:
+  - {{ .Values.dpa.nsprojecttobackup }}
+  storageLocation: {{ .Values.clusterName }}-dpa-1
+  ttl: 168h0m0s
