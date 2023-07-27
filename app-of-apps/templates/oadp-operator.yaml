@@ -16,7 +16,7 @@ spec:
       - oadp-values.yaml
     path: operatorhub
     repoURL: https://github.com/javierbareapalma/odcn-helm-sealed-secrets-oadp.git
-    targetRevision: rh-jbareapa
+    targetRevision: main
   syncPolicy:
     automated: {}
     syncOptions:
